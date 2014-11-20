@@ -1,0 +1,9 @@
+{
+  "name": "mathCodingClub/phpfs",
+  "autoload": {
+    "psr-4": {
+      "phpfs\\": ""
+    }
+  },
+  "minimum-stability": "dev"
+}
