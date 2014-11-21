@@ -32,29 +32,11 @@ class operations {
     return (strtolower($a['name']) < strtolower($b['name'])) ? -1 : 1;
   }
 
-  static public function getContentType($ext) {
-    switch ($ext) {
-      case "pdf": $ctype = "application/pdf";
-        break;
-      case "exe": $ctype = "application/octet-stream";
-        break;
-      case "zip": $ctype = "application/zip";
-        break;
-      case "doc": $ctype = "application/msword";
-        break;
-      case "xls": $ctype = "application/vnd.ms-excel";
-        break;
-      case "ppt": $ctype = "application/vnd.ms-powerpoint";
-        break;
-      case "gif": $ctype = "image/gif";
-        break;
-      case "png": $ctype = "image/png";
-        break;
-      case "jpe": case "jpeg": case "jpg": $ctype = "image/jpg";
-        break;
-      default: $ctype = "application/octet-stream";
-    }
-    return $ctype;
+  static public function getContentType($filefullpath) {
+    $finfo = finfo_open(FILEINFO_MIME_TYPE); 
+    $ext = finfo_file($finfo,$filefullpath);
+    finfo_close($finfo);
+    return $ext;
   }
 
   static public function getFilesInDir($dir, $skipFilesMatchingPattern = null, $getRecursiveFolderSize = true) {
